@@ -1,0 +1,47 @@
+[tools]
+node = "24.14.1"
+pnpm = "10.33.0"
+
+[tasks.setup]
+run = "pnpm install"
+
+[tasks.setup-claude-code]
+run = '''
+mkdir -p .claude
+ln -sfn ../.agents/agents .claude/agents
+ln -sfn ../.agents/skills .claude/skills
+ln -sf ./AGENTS.md ./CLAUDE.md
+'''
+
+[tasks.setup-github-copilot]
+run = '''
+mkdir -p .github
+ln -sfn ../.agents/agents .github/agents
+ln -sfn ../.agents/skills .github/skills
+'''
+
+[tasks.build]
+description = "Mirror @ippon-ui/styles versions into public/ and generate the site"
+run = "pnpm build"
+
+[tasks.dev]
+description = "Serve the generated public/ folder (requires a build first)"
+run = "pnpm dev"
+
+[tasks.lint]
+run = "pnpm lint"
+
+[tasks.lint-ci]
+run = "pnpm lint:ci"
+
+[tasks.format]
+run = "pnpm format"
+
+[tasks.format-ci]
+run = "pnpm format:ci"
+
+[tasks.test-unit]
+run = "pnpm test:unit"
+
+[tasks.test-unit-ci]
+run = "pnpm test:unit:ci"
